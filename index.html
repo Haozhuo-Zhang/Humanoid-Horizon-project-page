@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Humanoid Horizon</title>
+  <meta name="description" content="Humanoid Horizon extends task horizon in whole-body loco-manipulation with parallel training, dynamic starting, and reward gating.">
+  <meta name="author" content="Haozhuo Zhang, Qiang Zhang, Jian Tang, Mingzhe Ni, Michele Caprio, Angelo Cangelosi, Wei Pan">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    .publication-title { font-size: 2.35rem !important; }
+    .affil-line {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+    }
+    .teaser-figure {
+      margin: 0;
+    }
+    .teaser-figure img,
+    .method-figure img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-xl);
+    }
+    .figure-caption {
+      margin-top: 0.9rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      text-align: center;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .video-grid video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #0f172a;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+    @media (max-width: 768px) {
+      .video-grid { grid-template-columns: 1fr; }
+      .publication-title { font-size: 1.7rem !important; }
+    }
+  </style>
+</head>
+<body>
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Humanoid Horizon: Extending Task Horizon in Whole-Body Loco-Manipulation via Parallel Training, Dynamic Starting, and Reward Gating</h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Haozhuo Zhang<sup>1</sup>,</span>
+                <span class="author-block">Qiang Zhang<sup>2</sup>,</span>
+                <span class="author-block">Jian Tang<sup>3</sup>,</span>
+                <span class="author-block">Mingzhe Ni<sup>1</sup>,</span>
+                <span class="author-block">Michele Caprio<sup>4</sup>,</span>
+                <span class="author-block">Angelo Cangelosi<sup>1,*</sup>,</span>
+                <span class="author-block">Wei Pan<sup>5,*</sup></span>
+              </div>
+              <p class="affil-line">
+                <sup>1</sup>The University of Manchester
+                &nbsp;&nbsp;<sup>2</sup>University of Science and Technology of China
+                &nbsp;&nbsp;<sup>3</sup>X-Humanoid<br>
+                <sup>4</sup>University of Warwick
+                &nbsp;&nbsp;<sup>5</sup>Newcastle University
+                &nbsp;&nbsp;*Corresponding authors
+              </p>
+              <div class="publication-venue">NeurIPS 2026</div>
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <figure class="teaser-figure">
+            <img src="images/teaser.png" alt="A single policy completing uninterrupted multi-object transport in bedroom, kitchen, living room, and warehouse scenes.">
+            <figcaption class="figure-caption">A single policy performs long-horizon whole-body loco-manipulation across cluttered bedroom, kitchen, living room, and warehouse scenes without resets. Each row is one uninterrupted multi-object transport episode.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>Cluttered indoor environments, where large and heavy objects are scattered across diverse surfaces, require humanoid robots to sequentially navigate, grasp, transport, and accurately place each item at its target location within a single uninterrupted episode. This long-horizon, whole-body loco-manipulation task remains a significant challenge for current methods. Previous approaches often suffer from two main issues: easy-reward bias, where training overemphasizes early transport stages at the expense of later ones, and catastrophic forgetting, where focusing on later stages leads to a decline in earlier-stage performance. In this work, we introduce Humanoid Horizon, a unified policy framework designed to overcome these limitations through three interrelated mechanisms. The Parallel Training Strategy organizes N scenes into S concurrent stage streams governed by a shared policy, ensuring all transport stages receive continuous gradient updates and removing the bottleneck of sequential optimization. The Dynamic Starting Mechanism updates each environment's initial state with terminal states from upstream rollouts, gradually broadening transition coverage and enhancing robustness at stage boundaries. Reward Gating sets the reward to zero for the rest of the episode in later-stage streams when the immediately preceding object is displaced beyond a set threshold, so the shared policy learns not to disturb a just-placed object and earlier placements are preserved throughout the episode. Collectively, these strategies achieve per-stage success rates exceeding 80% on the two-object LHM-Humanoid benchmark (350 training scenes, 66 held-out scenes). As the number of sequentially transported objects grows beyond two, success declines with the horizon, but the degradation is graceful relative to the sharp drop seen in all baselines. Additionally, we demonstrate that the RL teacher policy can be distilled into a Vision-Language-Action student via DAgger. When provided only with egocentric RGB or depth observations and natural language instructions, the student successfully replicates the teacher's long-horizon, multi-object behaviors, highlighting the potential for perception-driven deployment on real humanoid robots.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <h2 class="title is-3 has-text-centered">Method</h2>
+        <figure class="method-figure">
+          <img src="images/method.png" alt="Training pipeline with parallel stage streams, dynamic starting, reward gating, and vision-language-action distillation.">
+          <figcaption class="figure-caption">Parallel stage streams share one policy. Dynamic Starting writes each stage's terminal state into the next stage's buffer. Reward Gating zeros the reward if the immediately preceding object leaves its goal. The teacher is distilled into a student that uses egocentric RGB or depth and language instructions.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-widescreen">
+        <h2 class="title is-3 has-text-centered">Videos</h2>
+        <div class="video-grid" id="videos">
+          <video autoplay muted loop playsinline preload="auto" src="videos/000.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/002.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/010.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/011.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/012.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/016.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/017.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/018.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/049.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/050.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/051.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/068.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/069.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/070.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/104.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/105.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/106.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/147.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/177.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/204.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/205.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/238.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/239.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/240.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/266.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/267.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/268.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/304.mp4"></video>
+          <video autoplay muted loop playsinline preload="auto" src="videos/306.mp4"></video>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>, adopted from the <a href="https://nerfies.github.io">Nerfies</a> project page.
+              Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function playAll() {
+      document.querySelectorAll("video").forEach(function (v) {
+        v.muted = true;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      });
+    }
+    document.addEventListener("DOMContentLoaded", playAll);
+    window.addEventListener("load", playAll);
+  </script>
+</body>
+</html>
